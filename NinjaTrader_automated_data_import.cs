@@ -15,7 +15,7 @@ using System.Threading;
 
 namespace util
 {
-	class Program
+    class NinjaTrader_automated_data_import
 	{
         //Import the FindWindow API to find our window
         [DllImportAttribute("User32.dll")]
@@ -87,15 +87,41 @@ namespace util
 
                     }
 
+                    // if text file is closed, the data import will be canceled
+                    int windowopen = 0;
+
+                    int hWnd7 = FindWindow(null, "dataimportmessage.txt - Notepad");
+
+                    if (hWnd7 > 0) //If found
+                    {
+                        windowopen = 0;
+                    }
+
+                    else
+                    {
+                        windowopen = 1;
+                    }
+                    //////////////////////////////////////////////////////////////////////
+
+                    // if enter key is pressed, the data import will start regardless of the time 
+                    ConsoleKeyInfo c = new ConsoleKeyInfo();
+
+                    if (Console.KeyAvailable == true)
+                    {
+                        c = Console.ReadKey();
+                    }
+                    /////////////////////////////////////////////////////////////////////
+
                     //change times according to when I want to import data
-                    if ((System.DateTime.Now.Minute == 1 && System.DateTime.Now.Second == 1 ) ||
-                        (System.DateTime.Now.Minute == 8 && System.DateTime.Now.Second == 1 ) ||
-                        (System.DateTime.Now.Minute == 16 && System.DateTime.Now.Second == 1 ) ||
-                        (System.DateTime.Now.Minute == 24 && System.DateTime.Now.Second == 1 ) ||
-                        (System.DateTime.Now.Minute == 31 && System.DateTime.Now.Second == 1 ) ||
-                        (System.DateTime.Now.Minute == 38 && System.DateTime.Now.Second == 1 ) ||
-                        (System.DateTime.Now.Minute == 46 && System.DateTime.Now.Second == 1 ) ||
-                        (System.DateTime.Now.Minute == 54 && System.DateTime.Now.Second == 1 ))
+                    if ((System.DateTime.Now.Minute == 1 && System.DateTime.Now.Second == 1 && windowopen == 0) ||
+                        (System.DateTime.Now.Minute == 8 && System.DateTime.Now.Second == 1 && windowopen == 0) ||
+                        (System.DateTime.Now.Minute == 16 && System.DateTime.Now.Second == 1 && windowopen == 0) ||
+                        (System.DateTime.Now.Minute == 24 && System.DateTime.Now.Second == 1 && windowopen == 0) ||
+                        (System.DateTime.Now.Minute == 31 && System.DateTime.Now.Second == 1 && windowopen == 0) ||
+                        (System.DateTime.Now.Minute == 38 && System.DateTime.Now.Second == 1 && windowopen == 0) ||
+                        (System.DateTime.Now.Minute == 46 && System.DateTime.Now.Second == 1 && windowopen == 0) ||
+                        (System.DateTime.Now.Minute == 54 && System.DateTime.Now.Second == 1 && windowopen == 0) ||
+                        (c.Key == ConsoleKey.Enter))
                     {
 
                       
