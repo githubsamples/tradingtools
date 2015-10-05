@@ -12,7 +12,7 @@ using NinjaTrader.Gui.Chart;
 using NinjaTrader.Strategy;
 #endregion
 
-//// This namespace holds all strategies and is required. Do not change it.
+// This namespace holds all strategies and is required. Do not change it.
 namespace NinjaTrader.Strategy
 {
     /// <summary>
